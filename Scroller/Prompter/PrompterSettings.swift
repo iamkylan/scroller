@@ -9,6 +9,7 @@ final class PrompterSettings {
     var fontSize: Double { didSet { store(fontSize, "fontSize") } }
     var wordsPerMinute: Double { didSet { store(wordsPerMinute, "wordsPerMinute") } }
     var isMirrored: Bool { didSet { store(isMirrored, "isMirrored") } }
+    var isVoiceTracking: Bool { didSet { store(isVoiceTracking, "isVoiceTracking") } }
     /// Where the reading line sits, as a fraction of screen height.
     var eyeLineFraction: Double { didSet { store(eyeLineFraction, "eyeLineFraction") } }
 
@@ -19,11 +20,13 @@ final class PrompterSettings {
             "fontSize": 46.0,
             "wordsPerMinute": 140.0,
             "isMirrored": false,
+            "isVoiceTracking": true,
             "eyeLineFraction": 0.36,
         ])
         fontSize = defaults.double(forKey: "fontSize")
         wordsPerMinute = defaults.double(forKey: "wordsPerMinute")
         isMirrored = defaults.bool(forKey: "isMirrored")
+        isVoiceTracking = defaults.bool(forKey: "isVoiceTracking")
         eyeLineFraction = defaults.double(forKey: "eyeLineFraction")
     }
 

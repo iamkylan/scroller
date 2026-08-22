@@ -12,7 +12,7 @@ struct PrompterView: View {
 
     init(script: Script) {
         self.script = script
-        _model = State(initialValue: PrompterModel(wordCount: script.wordCount))
+        _model = State(initialValue: PrompterModel(script: script))
     }
 
     var body: some View {
@@ -36,6 +36,7 @@ struct PrompterView: View {
                         settings.fontSize = newSize
                         showSizeHUD = true
                         sizeHUDToken += 1
+                        model.refreshVoiceTarget()
                     },
                     onTap: { model.toggle() },
                     onManualScroll: { model.stop() }
@@ -48,6 +49,8 @@ struct PrompterView: View {
                 } else {
                     controls(wordsPerMinute: $settings.wordsPerMinute)
                 }
+
+                voiceBanner
 
                 if let countdown = model.countdown {
                     Text("\(countdown)")
@@ -67,6 +70,7 @@ struct PrompterView: View {
         .persistentSystemOverlays(.hidden)
         .onAppear {
             model.wordsPerMinute = settings.wordsPerMinute
+            model.mode = settings.isVoiceTracking ? .voice : .constant
             UIApplication.shared.isIdleTimerDisabled = true
         }
         .onDisappear {
@@ -75,6 +79,10 @@ struct PrompterView: View {
         }
         .onChange(of: settings.wordsPerMinute) { _, newValue in
             model.wordsPerMinute = newValue
+        }
+        .onChange(of: settings.isVoiceTracking) { _, newValue in
+            model.stop()
+            model.mode = newValue ? .voice : .constant
         }
     }
 
@@ -108,11 +116,22 @@ struct PrompterView: View {
     private var runningHint: some View {
         VStack {
             Spacer()
-            Text("Tap anywhere to stop")
-                .font(.footnote.weight(.medium))
-                .foregroundStyle(.white.opacity(0.32))
-                .padding(.bottom, 36)
+            if model.mode == .voice && !model.isUsingFallbackPace {
+                HStack(spacing: 7) {
+                    Circle()
+                        .fill(model.tracker.isLocked ? Color.scrollerAccent : .white.opacity(0.3))
+                        .frame(width: 7, height: 7)
+                    Text(model.tracker.isLocked ? "Following you" : "Listening")
+                }
+                .animation(.easeOut(duration: 0.25), value: model.tracker.isLocked)
+            } else {
+                Text("Tap anywhere to stop")
+            }
         }
+        .font(.footnote.weight(.medium))
+        .foregroundStyle(.white.opacity(0.4))
+        .padding(.bottom, 36)
+        .frame(maxHeight: .infinity, alignment: .bottom)
         .allowsHitTesting(false)
     }
 
@@ -121,6 +140,9 @@ struct PrompterView: View {
             HStack(spacing: 10) {
                 iconButton("xmark") { dismiss() }
                 Spacer()
+                iconButton("waveform", isOn: settings.isVoiceTracking) {
+                    settings.isVoiceTracking.toggle()
+                }
                 iconButton("arrow.counterclockwise") { model.restart() }
                 iconButton("flip.horizontal", isOn: settings.isMirrored) {
                     settings.isMirrored.toggle()
@@ -148,7 +170,9 @@ struct PrompterView: View {
                 .font(.caption)
                 .foregroundStyle(.white.opacity(0.4))
 
-                Text("\(Int(settings.wordsPerMinute)) wpm · \(durationText)")
+                Text(settings.isVoiceTracking
+                     ? "Voice tracking · \(Int(settings.wordsPerMinute)) wpm fallback"
+                     : "\(Int(settings.wordsPerMinute)) wpm · \(durationText)")
                     .font(.caption.weight(.medium).monospacedDigit())
                     .foregroundStyle(.white.opacity(0.45))
             }
@@ -177,6 +201,11 @@ struct PrompterView: View {
             }
             .allowsHitTesting(false)
         }
+    }
+
+    private var voiceBanner: some View {
+        VoiceBanner(status: model.tracker.status)
+            .animation(.easeOut(duration: 0.2), value: model.tracker.status)
     }
 
     private var sizeHUD: some View {

@@ -40,6 +40,11 @@ final class PrompterTextProxy {
         return textView.offset(from: textView.beginningOfDocument, to: position)
     }
 
+    /// Vertical position of a character within the scrollable content.
+    func contentY(forCharacterIndex index: Int) -> Double? {
+        rect(forCharacterIndex: index).map { Double($0.minY) }
+    }
+
     func scroll(characterIndex index: Int, toScreenY screenY: Double) {
         guard let rect = rect(forCharacterIndex: index) else { return }
         offsetY = Double(rect.minY) - screenY

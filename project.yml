@@ -43,6 +43,8 @@ targets:
         INFOPLIST_KEY_CFBundleDisplayName: Scroller
         INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
         INFOPLIST_KEY_UIUserInterfaceStyle: Dark
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: "Scroller listens while you read so the script scrolls at your pace."
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: "Scroller matches what you say against your script so the text can follow along. Recognition runs entirely on your iPhone."
         TARGETED_DEVICE_FAMILY: "1,2"
 
   ScrollerShare:
