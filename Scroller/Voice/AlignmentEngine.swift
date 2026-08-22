@@ -30,12 +30,23 @@ struct AlignmentEngine {
     private let mismatchScore = -1.5
     private let gapScore = -1.0
 
+    /// Flow mode: the window follows the cursor, biased forward.
     func match(spoken: [String], scriptTokens: [String], cursor: Int) -> Match? {
+        let start = max(0, cursor - lookBehind)
+        let end = min(scriptTokens.count, cursor + lookAhead)
+        guard start < end else { return nil }
+        return match(spoken: spoken, scriptTokens: scriptTokens, window: start..<end)
+    }
+
+    /// Line mode: the window is the current beat plus the next one, so moving
+    /// backwards inside it — which is what repeating a take looks like — needs
+    /// no special handling.
+    func match(spoken: [String], scriptTokens: [String], window: Range<Int>) -> Match? {
         let recent = Array(spoken.suffix(spokenTail))
         guard recent.count >= minimumSpokenWords, !scriptTokens.isEmpty else { return nil }
 
-        let windowStart = max(0, cursor - lookBehind)
-        let windowEnd = min(scriptTokens.count, cursor + lookAhead)
+        let windowStart = max(0, window.lowerBound)
+        let windowEnd = min(scriptTokens.count, window.upperBound)
         guard windowStart < windowEnd else { return nil }
         let window = Array(scriptTokens[windowStart..<windowEnd])
 

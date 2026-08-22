@@ -16,6 +16,9 @@ settings:
     DEAD_CODE_STRIPPING: YES
     DEVELOPMENT_TEAM: 82FBZ8GVGB
     CODE_SIGN_STYLE: Automatic
+    # App Group identifiers are globally unique across every Apple account.
+    # Change it here only — the entitlements and Info.plists below read it.
+    APP_GROUP_ID: group.com.kylan.scroller.shared
 
 targets:
   Scroller:
@@ -31,20 +34,32 @@ targets:
     dependencies:
       - target: ScrollerShare
         embed: true
+    entitlements:
+      path: Scroller/Scroller.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - $(APP_GROUP_ID)
+    info:
+      path: Scroller/Info.plist
+      properties:
+        CFBundleDisplayName: Scroller
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        AppGroupIdentifier: $(APP_GROUP_ID)
+        UILaunchScreen: {}
+        UIStatusBarHidden: true
+        UIUserInterfaceStyle: Dark
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSMicrophoneUsageDescription: Scroller listens while you read so the script follows your pace.
+        NSSpeechRecognitionUsageDescription: Scroller matches what you say against your script so the text can follow along. Recognition runs entirely on your iPhone.
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.kylan.scroller
         PRODUCT_NAME: Scroller
-        CODE_SIGN_ENTITLEMENTS: Scroller/Scroller.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: scroller
-        GENERATE_INFOPLIST_FILE: YES
-        INFOPLIST_KEY_UILaunchScreen_Generation: YES
-        INFOPLIST_KEY_UIStatusBarHidden: YES
-        INFOPLIST_KEY_CFBundleDisplayName: Scroller
-        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
-        INFOPLIST_KEY_UIUserInterfaceStyle: Dark
-        INFOPLIST_KEY_NSMicrophoneUsageDescription: "Scroller listens while you read so the script scrolls at your pace."
-        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: "Scroller matches what you say against your script so the text can follow along. Recognition runs entirely on your iPhone."
         TARGETED_DEVICE_FAMILY: "1,2"
 
   ScrollerShare:
@@ -53,10 +68,16 @@ targets:
     sources:
       - path: ScrollerShare
       - path: Shared
+    entitlements:
+      path: ScrollerShare/ScrollerShare.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - $(APP_GROUP_ID)
     info:
       path: ScrollerShare/Info.plist
       properties:
         CFBundleDisplayName: Scroller
+        AppGroupIdentifier: $(APP_GROUP_ID)
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
@@ -70,5 +91,5 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.kylan.scroller.share
         PRODUCT_NAME: ScrollerShare
-        CODE_SIGN_ENTITLEMENTS: ScrollerShare/ScrollerShare.entitlements
+
         TARGETED_DEVICE_FAMILY: "1,2"

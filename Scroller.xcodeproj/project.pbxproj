@@ -15,25 +15,33 @@
 		4991C3B5575EA7D215131B35 /* PrompterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE803B591B55BBA55D3B441B /* PrompterModel.swift */; };
 		4DF43BB4DAF61F06F46FAAC3 /* ScriptTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E0B292A6FA5FBF15DCB9A /* ScriptTokenizer.swift */; };
 		510A43926337A5BC6326CD72 /* ScrollEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66A378A6865C04EB867D572 /* ScrollEngine.swift */; };
+		5C2EDCCE8128B319851CAAEE /* BeatTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD9F41A0DE1BE03D2A54D17 /* BeatTracker.swift */; };
+		5DE09669B68D411FE6203A08 /* BeatSegmenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BE057344677F62513341C /* BeatSegmenter.swift */; };
 		5F1127BAE258944B0A6E2731 /* ShareRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F584BBA84ADA6702823C5BC /* ShareRootView.swift */; };
 		6140D567F147E34F7AE72021 /* AlignmentEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91018FDBDEF00FB6F4732D03 /* AlignmentEngine.swift */; };
 		6D39A5F57FE6CDB555461C5D /* PrompterTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDB5F31748848F8E56768B /* PrompterTextView.swift */; };
 		713DC70E56C4CEA3CF46AF1B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF98C43BC92557E0995EB4C /* Theme.swift */; };
 		7769BDE221B3F0C96D8C7FB2 /* ScrollerShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DB45C095D270F6FC7934756C /* ScrollerShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7BC8EDD478903498FD4BE4F5 /* Beat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF2147F28601992D8C1526 /* Beat.swift */; };
 		7F50E176EEEB46BCA66DACAD /* SpeechTranscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48D3A50D0AEFBD4E8784344 /* SpeechTranscription.swift */; };
+		8041F0F1DAFC7EF80ACF07A5 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11AD85006624AE55C19360B /* LineView.swift */; };
 		80E0DEDBC6E1247719407E12 /* ScriptTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E0B292A6FA5FBF15DCB9A /* ScriptTokenizer.swift */; };
 		8395BC3A60CDCBD88478EB16 /* PrompterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676C82D93FA85D0B51211B6 /* PrompterView.swift */; };
 		9ADD867C893C81BCA02CBC67 /* ReadingTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D44EC08EEB1DB97FC054D /* ReadingTime.swift */; };
 		B4C77B5339FB91752C28479F /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345C978FB66A0B0BF52F5B2 /* Script.swift */; };
 		B5B0BE57CD8BB25E5811B085 /* ScriptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E692304256DB67A254301B13 /* ScriptStore.swift */; };
+		B814581162E4398375919F76 /* PrompterIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621586FAE439D78081CA8160 /* PrompterIconButton.swift */; };
 		BB6A66ABC61694DB0C1A690C /* SharedTextExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B70810BAEDB56019419CED /* SharedTextExtractor.swift */; };
 		C253FBCA2E4C911D86948114 /* ScriptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E692304256DB67A254301B13 /* ScriptStore.swift */; };
+		C2DEC3403F4852D2B379AA07 /* BeatProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C906E279EE482FAAD8E582 /* BeatProgress.swift */; };
 		CB14957D995F65A737AF9F9C /* AddScriptIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1846047C508FECF31970B8 /* AddScriptIntent.swift */; };
 		CBE39BCFCE59C911DA9FFCAE /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C860819AE70214139F343E82 /* LibraryView.swift */; };
 		CE84CB91D27E95BCC16C96C8 /* ReadingTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D44EC08EEB1DB97FC054D /* ReadingTime.swift */; };
 		D3130F4298CCE3BA926CB077 /* ScriptLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E016A5EE91494F5766658044 /* ScriptLibrary.swift */; };
 		D65F121BA0B294A3DAC10CDE /* ScriptImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942B7F66437861FE433FA980 /* ScriptImport.swift */; };
+		D91545722E44AF3D3B312DC5 /* Beat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF2147F28601992D8C1526 /* Beat.swift */; };
 		DC4DC9C5D35006B61E673806 /* scroller.icon in Resources */ = {isa = PBXBuildFile; fileRef = EFFEAC9F918B92C0F94775BF /* scroller.icon */; };
+		E18D6DAD8A9C0EBB32E60590 /* BeatSegmenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BE057344677F62513341C /* BeatSegmenter.swift */; };
 		E29CB39467C41073222484EF /* ScrollerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAF8AFCEC46F2CEB505FB5 /* ScrollerApp.swift */; };
 		E97B9B7A792C8C9D910B482F /* VoiceTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62854647E80866D5603DD0D /* VoiceTracker.swift */; };
 		F6AFFFAEEFA02FBC3D63EE1C /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345C978FB66A0B0BF52F5B2 /* Script.swift */; };
@@ -64,16 +72,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04DF2147F28601992D8C1526 /* Beat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beat.swift; sourceTree = "<group>"; };
 		0A1846047C508FECF31970B8 /* AddScriptIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScriptIntent.swift; sourceTree = "<group>"; };
 		0F584BBA84ADA6702823C5BC /* ShareRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootView.swift; sourceTree = "<group>"; };
 		11BFAE489BD4031DA9DFE1B6 /* ScrollerShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScrollerShare.entitlements; sourceTree = "<group>"; };
 		2676C82D93FA85D0B51211B6 /* PrompterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrompterView.swift; sourceTree = "<group>"; };
+		2FD9F41A0DE1BE03D2A54D17 /* BeatTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatTracker.swift; sourceTree = "<group>"; };
 		3BF98C43BC92557E0995EB4C /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		486D79C64C369ED8126A32C1 /* Scroller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Scroller.entitlements; sourceTree = "<group>"; };
 		5CE6B57BFC344AD4AD634471 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		61C906E279EE482FAAD8E582 /* BeatProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatProgress.swift; sourceTree = "<group>"; };
+		621586FAE439D78081CA8160 /* PrompterIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrompterIconButton.swift; sourceTree = "<group>"; };
 		89B70810BAEDB56019419CED /* SharedTextExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTextExtractor.swift; sourceTree = "<group>"; };
 		91018FDBDEF00FB6F4732D03 /* AlignmentEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentEngine.swift; sourceTree = "<group>"; };
 		918E0B292A6FA5FBF15DCB9A /* ScriptTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptTokenizer.swift; sourceTree = "<group>"; };
+		92CAA4D864DF5140B69750EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		942B7F66437861FE433FA980 /* ScriptImport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptImport.swift; sourceTree = "<group>"; };
 		A62854647E80866D5603DD0D /* VoiceTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceTracker.swift; sourceTree = "<group>"; };
 		AD92CF69505AA98B519F2D31 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +96,7 @@
 		C860819AE70214139F343E82 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		CAB19296CC9F446DEAC24E9F /* PrompterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrompterSettings.swift; sourceTree = "<group>"; };
 		CE803B591B55BBA55D3B441B /* PrompterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrompterModel.swift; sourceTree = "<group>"; };
+		D05BE057344677F62513341C /* BeatSegmenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatSegmenter.swift; sourceTree = "<group>"; };
 		D345C978FB66A0B0BF52F5B2 /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		D6B58C4FA0677193C36C67E8 /* Scroller.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Scroller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB42EE0BCEBBDB0721EE3837 /* PrompterTextProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrompterTextProxy.swift; sourceTree = "<group>"; };
@@ -90,6 +104,7 @@
 		E016A5EE91494F5766658044 /* ScriptLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptLibrary.swift; sourceTree = "<group>"; };
 		E692304256DB67A254301B13 /* ScriptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptStore.swift; sourceTree = "<group>"; };
 		EFFEAC9F918B92C0F94775BF /* scroller.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = scroller.icon; sourceTree = "<group>"; };
+		F11AD85006624AE55C19360B /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		F2FE21EB92223B5A22C0A2F5 /* VoiceBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceBanner.swift; sourceTree = "<group>"; };
 		F66A378A6865C04EB867D572 /* ScrollEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollEngine.swift; sourceTree = "<group>"; };
 		F8EAF8AFCEC46F2CEB505FB5 /* ScrollerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollerApp.swift; sourceTree = "<group>"; };
@@ -125,6 +140,7 @@
 				8330241D96929D6AA62583DD /* Prompter */,
 				6D9455A6B14EC63D90B8C44E /* Support */,
 				8B0BEA889AA3F5D0DFFFCC8D /* Voice */,
+				92CAA4D864DF5140B69750EA /* Info.plist */,
 				486D79C64C369ED8126A32C1 /* Scroller.entitlements */,
 				EFFEAC9F918B92C0F94775BF /* scroller.icon */,
 				F8EAF8AFCEC46F2CEB505FB5 /* ScrollerApp.swift */,
@@ -143,6 +159,8 @@
 		8330241D96929D6AA62583DD /* Prompter */ = {
 			isa = PBXGroup;
 			children = (
+				F11AD85006624AE55C19360B /* LineView.swift */,
+				621586FAE439D78081CA8160 /* PrompterIconButton.swift */,
 				CE803B591B55BBA55D3B441B /* PrompterModel.swift */,
 				CAB19296CC9F446DEAC24E9F /* PrompterSettings.swift */,
 				DB42EE0BCEBBDB0721EE3837 /* PrompterTextProxy.swift */,
@@ -157,6 +175,8 @@
 		87FA75B5CF1B82C4751F0FBC /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				04DF2147F28601992D8C1526 /* Beat.swift */,
+				D05BE057344677F62513341C /* BeatSegmenter.swift */,
 				C50D44EC08EEB1DB97FC054D /* ReadingTime.swift */,
 				D345C978FB66A0B0BF52F5B2 /* Script.swift */,
 				942B7F66437861FE433FA980 /* ScriptImport.swift */,
@@ -170,6 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				91018FDBDEF00FB6F4732D03 /* AlignmentEngine.swift */,
+				61C906E279EE482FAAD8E582 /* BeatProgress.swift */,
+				2FD9F41A0DE1BE03D2A54D17 /* BeatTracker.swift */,
 				B48D3A50D0AEFBD4E8784344 /* SpeechTranscription.swift */,
 				A62854647E80866D5603DD0D /* VoiceTracker.swift */,
 			);
@@ -306,6 +328,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D91545722E44AF3D3B312DC5 /* Beat.swift in Sources */,
+				5DE09669B68D411FE6203A08 /* BeatSegmenter.swift in Sources */,
 				CE84CB91D27E95BCC16C96C8 /* ReadingTime.swift in Sources */,
 				F6AFFFAEEFA02FBC3D63EE1C /* Script.swift in Sources */,
 				296E1546883DC29D72A05356 /* ScriptImport.swift in Sources */,
@@ -323,7 +347,13 @@
 			files = (
 				CB14957D995F65A737AF9F9C /* AddScriptIntent.swift in Sources */,
 				6140D567F147E34F7AE72021 /* AlignmentEngine.swift in Sources */,
+				7BC8EDD478903498FD4BE4F5 /* Beat.swift in Sources */,
+				C2DEC3403F4852D2B379AA07 /* BeatProgress.swift in Sources */,
+				E18D6DAD8A9C0EBB32E60590 /* BeatSegmenter.swift in Sources */,
+				5C2EDCCE8128B319851CAAEE /* BeatTracker.swift in Sources */,
 				CBE39BCFCE59C911DA9FFCAE /* LibraryView.swift in Sources */,
+				8041F0F1DAFC7EF80ACF07A5 /* LineView.swift in Sources */,
+				B814581162E4398375919F76 /* PrompterIconButton.swift in Sources */,
 				4991C3B5575EA7D215131B35 /* PrompterModel.swift in Sources */,
 				30ED6068B992A578E08581D9 /* PrompterSettings.swift in Sources */,
 				1FD177855B0CBB555F99292F /* PrompterTextProxy.swift in Sources */,
@@ -359,6 +389,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_GROUP_ID = group.com.kylan.scroller.shared;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -431,14 +462,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = scroller;
 				CODE_SIGN_ENTITLEMENTS = Scroller/Scroller.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Scroller;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Scroller listens while you read so the script scrolls at your pace.";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Scroller matches what you say against your script so the text can follow along. Recognition runs entirely on your iPhone.";
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				INFOPLIST_FILE = Scroller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -471,6 +495,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_GROUP_ID = group.com.kylan.scroller.shared;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -553,14 +578,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = scroller;
 				CODE_SIGN_ENTITLEMENTS = Scroller/Scroller.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Scroller;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Scroller listens while you read so the script scrolls at your pace.";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Scroller matches what you say against your script so the text can follow along. Recognition runs entirely on your iPhone.";
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				INFOPLIST_FILE = Scroller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

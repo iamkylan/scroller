@@ -9,8 +9,28 @@ struct LibraryView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
-        NavigationStack {
+        @Bindable var settings = settings
+
+        return NavigationStack {
             List {
+                Section {
+                    Picker("Mode", selection: $settings.mode) {
+                        ForEach(PrompterMode.allCases) { mode in
+                            Text(mode.title).tag(mode)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+
+                    Text(settings.mode.summary)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                }
+
                 Section {
                     PasteButton(payloadType: String.self) { strings in
                         guard let text = strings.first,
@@ -41,7 +61,12 @@ struct LibraryView: View {
             if phase == .active { library.reload() }
         }
         .fullScreenCover(item: $openedScript) { script in
-            PrompterView(script: script)
+            // Which way you're shooting is decided before you start, so the
+            // choice lives here rather than adding chrome to the prompter.
+            switch settings.mode {
+            case .flow: PrompterView(script: script)
+            case .line: LineView(script: script)
+            }
         }
     }
 

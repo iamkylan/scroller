@@ -5,7 +5,14 @@ import Foundation
 /// plain atomic write — otherwise a save from the extension can land on top of
 /// a save from the app and one of them silently disappears.
 enum ScriptStore {
-    static let appGroupID = "group.com.kylan.scroller"
+    /// Read from the bundle rather than hardcoded, so the identifier lives in
+    /// exactly one place — APP_GROUP_ID in project.yml, which also fills in the
+    /// entitlements. App Group identifiers are globally unique across all Apple
+    /// accounts, so this is a string that genuinely does get changed.
+    static let appGroupID: String = {
+        Bundle.main.object(forInfoDictionaryKey: "AppGroupIdentifier") as? String
+            ?? "group.com.kylan.scroller.shared"
+    }()
 
     /// False when the App Group entitlement is missing or misspelled. The app
     /// falls back to its own container so it still works; the share extension

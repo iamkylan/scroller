@@ -24,8 +24,21 @@ enum ScriptTokenizer {
             current = ""
         }
 
+        // Direction tags are performance notes, not lines. They're never
+        // spoken, so leaving them in the token stream would make the matcher
+        // step over a gap on every one of them.
+        var insideDirection = false
+
         for character in body {
-            if character.isLetter || character.isNumber || character == "'" || character == "\u{2019}" {
+            if character == "[" {
+                flush()
+                insideDirection = true
+            } else if character == "]" {
+                insideDirection = false
+                current = ""
+            } else if insideDirection {
+                // skipped
+            } else if character.isLetter || character.isNumber || character == "'" || character == "\u{2019}" {
                 if current.isEmpty { currentStart = offset }
                 current.append(character)
             } else {

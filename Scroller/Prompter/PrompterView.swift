@@ -138,13 +138,13 @@ struct PrompterView: View {
     private func controls(wordsPerMinute: Binding<Double>) -> some View {
         VStack(spacing: 0) {
             HStack(spacing: 10) {
-                iconButton("xmark") { dismiss() }
+                PrompterIconButton(symbol: "xmark") { dismiss() }
                 Spacer()
-                iconButton("waveform", isOn: settings.isVoiceTracking) {
+                PrompterIconButton(symbol: "waveform", isOn: settings.isVoiceTracking) {
                     settings.isVoiceTracking.toggle()
                 }
-                iconButton("arrow.counterclockwise") { model.restart() }
-                iconButton("flip.horizontal", isOn: settings.isMirrored) {
+                PrompterIconButton(symbol: "arrow.counterclockwise") { model.restart() }
+                PrompterIconButton(symbol: "flip.horizontal", isOn: settings.isMirrored) {
                     settings.isMirrored.toggle()
                 }
             }
@@ -225,19 +225,6 @@ struct PrompterView: View {
                 try? await Task.sleep(for: .seconds(1))
                 showSizeHUD = false
             }
-    }
-
-    private func iconButton(_ symbol: String, isOn: Bool = false, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Image(systemName: symbol)
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundStyle(isOn ? .black : .white)
-                .frame(width: 40, height: 40)
-                .background(
-                    isOn ? AnyShapeStyle(Color.scrollerAccent) : AnyShapeStyle(.ultraThinMaterial),
-                    in: .circle
-                )
-        }
     }
 
     private var durationText: String {

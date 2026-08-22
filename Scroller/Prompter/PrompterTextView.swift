@@ -95,11 +95,23 @@ struct PrompterTextView: UIViewRepresentable {
         paragraph.alignment = .left
         paragraph.hyphenationFactor = 0
 
-        return NSAttributedString(string: text, attributes: [
+        let attributed = NSMutableAttributedString(string: text, attributes: [
             .font: UIFont.systemFont(ofSize: fontSize, weight: .semibold),
             .foregroundColor: UIColor.white,
             .paragraphStyle: paragraph,
         ])
+
+        // Direction tags are notes to the performer, so they read as asides
+        // rather than as lines to be spoken.
+        for range in text.ranges(of: /\[[^\]]{1,80}\]/) {
+            let nsRange = NSRange(range, in: text)
+            attributed.addAttributes([
+                .font: UIFont.systemFont(ofSize: fontSize * 0.6, weight: .semibold),
+                .foregroundColor: UIColor(Color.scrollerAccent).withAlphaComponent(0.6),
+            ], range: nsRange)
+        }
+
+        return attributed
     }
 
     @MainActor

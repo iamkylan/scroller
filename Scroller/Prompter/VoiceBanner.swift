@@ -5,8 +5,11 @@ import SwiftUI
 struct VoiceBanner: View {
     let status: SpeechTranscription.Status
 
+    @State private var isVisible = true
+
     var body: some View {
-        if let content {
+        Group {
+            if let content, isVisible {
             VStack(spacing: 10) {
                 if case .installingModel(let fraction) = status {
                     ProgressView(value: fraction)
@@ -36,8 +39,19 @@ struct VoiceBanner: View {
             .padding(.horizontal, 22)
             .padding(.vertical, 18)
             .frame(maxWidth: 320)
-            .background(.ultraThinMaterial, in: .rect(cornerRadius: 20))
-            .transition(.opacity)
+                .background(.ultraThinMaterial, in: .rect(cornerRadius: 20))
+                .transition(.opacity)
+            }
+        }
+        .animation(.easeOut(duration: 0.25), value: isVisible)
+        .task(id: status) {
+            isVisible = true
+            // Anything the user can act on stays up. Anything informational
+            // gets out of the way — in Line mode it would otherwise sit on top
+            // of the line you're trying to read.
+            guard content?.offersSettings == false else { return }
+            try? await Task.sleep(for: .seconds(5))
+            isVisible = false
         }
     }
 
