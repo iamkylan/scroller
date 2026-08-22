@@ -146,9 +146,12 @@ struct LineView: View {
     /// to read or a control to press.
     private var beatProgress: some View {
         HStack(spacing: 3) {
-            ForEach(0..<max(tracker.beatCount, 1), id: \.self) { beat in
+            // Iterating the beats rather than a Range: SwiftUI's range overload
+            // is for constant counts, and this one goes from zero to however
+            // many beats the script has the moment it loads.
+            ForEach(tracker.beats) { beat in
                 Capsule()
-                    .fill(segmentStyle(for: beat))
+                    .fill(segmentStyle(for: beat.id))
                     .frame(height: 3)
             }
         }

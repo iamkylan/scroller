@@ -19,6 +19,7 @@ final class BeatTracker {
     var nextBeat: Beat? { progress.nextBeat }
     var takeCount: Int { progress.takeCount }
     var beatCount: Int { progress.script.beats.count }
+    var beats: [Beat] { progress.script.beats }
     var index: Int { progress.index }
 
     var isUsingFallback: Bool {

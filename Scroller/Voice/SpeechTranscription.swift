@@ -6,6 +6,18 @@ import Speech
 /// Live on-device transcription built on iOS 26's SpeechAnalyzer. The older
 /// SFSpeechRecognizer path is deliberately not used: it caps server recognition
 /// at about a minute, which is useless for reading a script.
+enum AudioSetupError: LocalizedError {
+    case inputUnavailable
+    case unsupportedFormat
+
+    var errorDescription: String? {
+        switch self {
+        case .inputUnavailable: "The microphone isn't available right now."
+        case .unsupportedFormat: "This device's microphone format can't be read."
+        }
+    }
+}
+
 @MainActor
 @Observable
 final class SpeechTranscription {
@@ -149,26 +161,43 @@ final class SpeechTranscription {
         into continuation: AsyncStream<AnalyzerInput>.Continuation
     ) throws {
         let session = AVAudioSession.sharedInstance()
-        try session.setCategory(.record, mode: .measurement, options: [.duckOthers])
+        // No options: duckOthers is rejected outright by .record, and Bluetooth
+        // input cannot be enabled for it either. Passing either one makes
+        // setCategory throw and voice tracking never starts.
+        try session.setCategory(.record, mode: .measurement)
         try session.setActive(true, options: .notifyOthersOnDeactivation)
 
         let engine = AVAudioEngine()
         let inputNode = engine.inputNode
         let inputFormat = inputNode.outputFormat(forBus: 0)
 
+        // installTap raises an Objective-C exception on a zero-rate or
+        // zero-channel format, which no Swift catch can stop. That happens when
+        // the mic is held by something else or the route isn't ready yet, so it
+        // has to be checked rather than caught.
+        guard inputFormat.sampleRate > 0, inputFormat.channelCount > 0 else {
+            throw AudioSetupError.inputUnavailable
+        }
+
         // Captured as locals so the audio thread never touches actor state.
         let targetFormat = analyzerFormat
-        let converter: AVAudioConverter? = {
-            guard let targetFormat, targetFormat != inputFormat else { return nil }
-            return AVAudioConverter(from: inputFormat, to: targetFormat)
-        }()
+        var converter: AVAudioConverter?
+        if let targetFormat, targetFormat != inputFormat {
+            guard let made = AVAudioConverter(from: inputFormat, to: targetFormat) else {
+                // Sending unconverted buffers would be silently wrong rather
+                // than loudly broken, so fail instead.
+                throw AudioSetupError.unsupportedFormat
+            }
+            converter = made
+        }
+        let resolvedConverter = converter
 
         inputNode.installTap(onBus: 0, bufferSize: 4096, format: inputFormat) { buffer, _ in
-            guard let converter, let targetFormat else {
+            guard let resolvedConverter, let targetFormat else {
                 continuation.yield(AnalyzerInput(buffer: buffer))
                 return
             }
-            guard let converted = Self.convert(buffer, using: converter, to: targetFormat) else { return }
+            guard let converted = Self.convert(buffer, using: resolvedConverter, to: targetFormat) else { return }
             continuation.yield(AnalyzerInput(buffer: converted))
         }
 
