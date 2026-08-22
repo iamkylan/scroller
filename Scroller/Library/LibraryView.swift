@@ -1,18 +1,43 @@
 import SwiftUI
 
+/// Flow and Line are real tabs rather than a hand-rolled selector, so the
+/// selection behaviour, the glass, and the animation are the system's own.
 struct LibraryView: View {
-    @Environment(ScriptLibrary.self) private var library
     @Environment(PrompterSettings.self) private var settings
-
-    @State private var openedScript: Script?
-    @Namespace private var modeSelection
-
-    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         @Bindable var settings = settings
 
-        return NavigationStack {
+        TabView(selection: $settings.mode) {
+            // Text-only labels: this is an internal tool for people who know
+            // the difference, and an icon for "Flow" would be a guess.
+            Tab(value: PrompterMode.flow) {
+                ScriptListView(mode: .flow)
+            } label: {
+                Text(PrompterMode.flow.title)
+            }
+
+            Tab(value: PrompterMode.line) {
+                ScriptListView(mode: .line)
+            } label: {
+                Text(PrompterMode.line.title)
+            }
+        }
+        .tint(.scrollerAccent)
+    }
+}
+
+private struct ScriptListView: View {
+    let mode: PrompterMode
+
+    @Environment(ScriptLibrary.self) private var library
+    @Environment(PrompterSettings.self) private var settings
+    @Environment(\.scenePhase) private var scenePhase
+
+    @State private var openedScript: Script?
+
+    var body: some View {
+        NavigationStack {
             List {
                 Section {
                     PasteButton(payloadType: String.self) { strings in
@@ -38,58 +63,17 @@ struct LibraryView: View {
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Scripts")
-            .safeAreaInset(edge: .bottom) {
-                modeBar(selection: $settings.mode)
-            }
         }
         .onChange(of: scenePhase) { _, phase in
             // The share extension may have added a script while we were away.
             if phase == .active { library.reload() }
         }
         .fullScreenCover(item: $openedScript) { script in
-            // Which way you're shooting is decided before you start, so the
-            // choice lives here rather than adding chrome to the prompter.
-            switch settings.mode {
+            switch mode {
             case .flow: PrompterView(script: script)
             case .line: LineView(script: script)
             }
         }
-    }
-
-    /// How you're shooting is a session-level choice, so it sits apart from
-    /// the list rather than competing with it for the top of the screen.
-    private func modeBar(selection: Binding<PrompterMode>) -> some View {
-        GlassEffectContainer(spacing: 0) {
-            HStack(spacing: 4) {
-                ForEach(PrompterMode.allCases) { mode in
-                    let isSelected = selection.wrappedValue == mode
-                    Button {
-                        selection.wrappedValue = mode
-                    } label: {
-                        Text(mode.title)
-                            .font(.subheadline.weight(.semibold))
-                            .foregroundStyle(isSelected ? .black : .white)
-                            .frame(width: 104)
-                            .padding(.vertical, 11)
-                            .contentShape(Capsule())
-                    }
-                    .buttonStyle(.plain)
-                    // The selection is a single piece of glass that travels
-                    // between the modes, rather than one fading out as another
-                    // fades in. Sharing one id across modes is what lets it
-                    // morph across the gap.
-                    .glassEffect(
-                        isSelected ? .regular.tint(.scrollerAccent).interactive() : .identity,
-                        in: .capsule
-                    )
-                    .glassEffectID(isSelected ? Optional("selection") : nil, in: modeSelection)
-                }
-            }
-            .padding(5)
-        }
-        .glassEffect(.regular, in: .capsule)
-        .padding(.bottom, 6)
-        .animation(.snappy(duration: 0.34), value: selection.wrappedValue)
     }
 
     private func row(_ script: Script) -> some View {
