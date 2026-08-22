@@ -5,6 +5,7 @@ struct LibraryView: View {
     @Environment(PrompterSettings.self) private var settings
 
     @State private var openedScript: Script?
+    @Namespace private var modeSelection
 
     @Environment(\.scenePhase) private var scenePhase
 
@@ -13,24 +14,6 @@ struct LibraryView: View {
 
         return NavigationStack {
             List {
-                Section {
-                    Picker("Mode", selection: $settings.mode) {
-                        ForEach(PrompterMode.allCases) { mode in
-                            Text(mode.title).tag(mode)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
-
-                    Text(settings.mode.summary)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .listRowBackground(Color.clear)
-                        .listRowSeparator(.hidden)
-                }
-
                 Section {
                     PasteButton(payloadType: String.self) { strings in
                         guard let text = strings.first,
@@ -55,6 +38,9 @@ struct LibraryView: View {
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Scripts")
+            .safeAreaInset(edge: .bottom) {
+                modeBar(selection: $settings.mode)
+            }
         }
         .onChange(of: scenePhase) { _, phase in
             // The share extension may have added a script while we were away.
@@ -68,6 +54,39 @@ struct LibraryView: View {
             case .line: LineView(script: script)
             }
         }
+    }
+
+    /// How you're shooting is a session-level choice, so it sits apart from
+    /// the list rather than competing with it for the top of the screen.
+    private func modeBar(selection: Binding<PrompterMode>) -> some View {
+        HStack(spacing: 4) {
+            ForEach(PrompterMode.allCases) { mode in
+                Button {
+                    selection.wrappedValue = mode
+                } label: {
+                    Text(mode.title)
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(selection.wrappedValue == mode ? .black : .primary)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 11)
+                        .background {
+                            if selection.wrappedValue == mode {
+                                Capsule()
+                                    .fill(Color.scrollerAccent)
+                                    .matchedGeometryEffect(id: "mode", in: modeSelection)
+                            }
+                        }
+                        .contentShape(Capsule())
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(4)
+        .frame(width: 236)
+        .background(.regularMaterial, in: .capsule)
+        .shadow(color: .black.opacity(0.35), radius: 18, y: 6)
+        .padding(.bottom, 6)
+        .animation(.snappy(duration: 0.28), value: selection.wrappedValue)
     }
 
     private func row(_ script: Script) -> some View {

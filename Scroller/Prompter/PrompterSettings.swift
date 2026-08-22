@@ -14,13 +14,6 @@ enum PrompterMode: String, CaseIterable, Identifiable, Sendable {
         case .line: "Line"
         }
     }
-
-    var summary: String {
-        switch self {
-        case .flow: "Scrolls continuously while you read straight through."
-        case .line: "One line at a time. Repeat as often as you like."
-        }
-    }
 }
 
 @MainActor

@@ -89,13 +89,15 @@ struct LineView: View {
                     .font(.system(size: settings.lineFontSize * 0.55, weight: .medium))
                     .foregroundStyle(.white.opacity(0.42))
                     .lineLimit(4)
-                    .padding(.bottom, 66)
+                    .padding(.bottom, 16)
             }
         }
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 28)
-        .padding(.vertical, 76)
+        // Clears the chrome and the beat progress bar above it.
+        .padding(.top, 150)
+        .padding(.bottom, 52)
         .scaleEffect(x: settings.isMirrored ? -1 : 1, y: 1)
         .allowsHitTesting(false)
     }
@@ -117,38 +119,42 @@ struct LineView: View {
 
     // MARK: - Controls
 
-    /// Tapping is always available and never wrong: left third steps back,
-    /// the rest advances.
+    /// The screen itself is the control: left half steps back, right half
+    /// advances. No arrows — the progress bar already says where you are.
     private var tapZones: some View {
         HStack(spacing: 0) {
-            zone(chevron: "chevron.left", enabled: tracker.index > 0) { tracker.goBack() }
-                .frame(maxWidth: .infinity)
-            zone(chevron: "chevron.right", enabled: tracker.index + 1 < tracker.beatCount) { tracker.advance() }
-                .frame(maxWidth: .infinity)
-                .frame(maxWidth: .infinity)
+            Color.clear
+                .contentShape(Rectangle())
+                .onTapGesture { tracker.goBack() }
+            Color.clear
+                .contentShape(Rectangle())
+                .onTapGesture { tracker.advance() }
         }
     }
 
-    private func zone(chevron: String, enabled: Bool, action: @escaping () -> Void) -> some View {
-        Color.clear
-            .contentShape(Rectangle())
-            .overlay(alignment: .bottom) {
-                Image(systemName: chevron)
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundStyle(.white.opacity(enabled ? 0.25 : 0.06))
-                    .padding(.bottom, 30)
+    /// One segment per beat: position and length at a glance, without a number
+    /// to read or a control to press.
+    private var beatProgress: some View {
+        HStack(spacing: 3) {
+            ForEach(0..<max(tracker.beatCount, 1), id: \.self) { beat in
+                Capsule()
+                    .fill(segmentStyle(for: beat))
+                    .frame(height: 3)
             }
-            .onTapGesture(perform: action)
+        }
+        .animation(.easeOut(duration: 0.25), value: tracker.index)
+    }
+
+    private func segmentStyle(for beat: Int) -> Color {
+        if beat == tracker.index { Color.scrollerAccent }
+        else if beat < tracker.index { .white.opacity(0.3) }
+        else { .white.opacity(0.1) }
     }
 
     private var chrome: some View {
         VStack {
             HStack(spacing: 10) {
                 PrompterIconButton(symbol: "xmark") { dismiss() }
-                Spacer()
-                Text("\(tracker.index + 1) / \(max(tracker.beatCount, 1))")
-                    .font(.caption.weight(.semibold).monospacedDigit())
-                    .foregroundStyle(.white.opacity(0.4))
                 Spacer()
                 PrompterIconButton(symbol: "waveform", isOn: settings.isVoiceTracking) {
                     settings.isVoiceTracking.toggle()
@@ -159,6 +165,10 @@ struct LineView: View {
             }
             .padding(.horizontal, 18)
             .padding(.top, 60)
+
+            beatProgress
+                .padding(.horizontal, 20)
+                .padding(.top, 18)
 
             Spacer()
         }

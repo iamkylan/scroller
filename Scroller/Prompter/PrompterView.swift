@@ -124,8 +124,6 @@ struct PrompterView: View {
                     Text(model.tracker.isLocked ? "Following you" : "Listening")
                 }
                 .animation(.easeOut(duration: 0.25), value: model.tracker.isLocked)
-            } else {
-                Text("Tap anywhere to stop")
             }
         }
         .font(.footnote.weight(.medium))
