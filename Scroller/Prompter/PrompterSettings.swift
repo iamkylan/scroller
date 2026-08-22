@@ -14,6 +14,15 @@ enum PrompterMode: String, CaseIterable, Identifiable, Sendable {
         case .line: "Line"
         }
     }
+
+    var symbol: String {
+        switch self {
+        // Vertical arrows against text lines: continuous movement.
+        case .flow: "arrow.up.and.down.text.horizontal"
+        // One line singled out with a forward arrow: step to the next.
+        case .line: "text.line.first.and.arrowtriangle.forward"
+        }
+    }
 }
 
 @MainActor
