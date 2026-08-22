@@ -1,0 +1,10 @@
+# Build output
+build/
+DerivedData/
+*.xcuserstate
+
+# xcodegen regenerates this from project.yml
+Scroller.xcodeproj/xcuserdata/
+Scroller.xcodeproj/project.xcworkspace/xcuserdata/
+
+.DS_Store

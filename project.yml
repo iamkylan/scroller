@@ -1,0 +1,72 @@
+name: Scroller
+options:
+  bundleIdPrefix: com.kylan
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_STRICT_CONCURRENCY: complete
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    DEAD_CODE_STRIPPING: YES
+    DEVELOPMENT_TEAM: 82FBZ8GVGB
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  Scroller:
+    type: application
+    platform: iOS
+    sources:
+      - path: Scroller
+        excludes:
+          - "scroller.icon"
+      - path: Scroller/scroller.icon
+        type: file
+      - path: Shared
+    dependencies:
+      - target: ScrollerShare
+        embed: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kylan.scroller
+        PRODUCT_NAME: Scroller
+        CODE_SIGN_ENTITLEMENTS: Scroller/Scroller.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: scroller
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIStatusBarHidden: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Scroller
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UIUserInterfaceStyle: Dark
+        TARGETED_DEVICE_FAMILY: "1,2"
+
+  ScrollerShare:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: ScrollerShare
+      - path: Shared
+    info:
+      path: ScrollerShare/Info.plist
+      properties:
+        CFBundleDisplayName: Scroller
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsText: true
+              NSExtensionActivationSupportsFileWithMaxCount: 1
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kylan.scroller.share
+        PRODUCT_NAME: ScrollerShare
+        CODE_SIGN_ENTITLEMENTS: ScrollerShare/ScrollerShare.entitlements
+        TARGETED_DEVICE_FAMILY: "1,2"

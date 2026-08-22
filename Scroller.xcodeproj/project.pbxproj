@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1FD177855B0CBB555F99292F /* PrompterTextProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42EE0BCEBBDB0721EE3837 /* PrompterTextProxy.swift */; };
+		296E1546883DC29D72A05356 /* ScriptImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942B7F66437861FE433FA980 /* ScriptImport.swift */; };
+		30ED6068B992A578E08581D9 /* PrompterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB19296CC9F446DEAC24E9F /* PrompterSettings.swift */; };
+		4423B2397821FE013BA762FF /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92CF69505AA98B519F2D31 /* ShareViewController.swift */; };
+		4991C3B5575EA7D215131B35 /* PrompterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE803B591B55BBA55D3B441B /* PrompterModel.swift */; };
+		510A43926337A5BC6326CD72 /* ScrollEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66A378A6865C04EB867D572 /* ScrollEngine.swift */; };
+		5F1127BAE258944B0A6E2731 /* ShareRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F584BBA84ADA6702823C5BC /* ShareRootView.swift */; };
+		6D39A5F57FE6CDB555461C5D /* PrompterTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDB5F31748848F8E56768B /* PrompterTextView.swift */; };
+		713DC70E56C4CEA3CF46AF1B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF98C43BC92557E0995EB4C /* Theme.swift */; };
+		7769BDE221B3F0C96D8C7FB2 /* ScrollerShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DB45C095D270F6FC7934756C /* ScrollerShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8395BC3A60CDCBD88478EB16 /* PrompterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676C82D93FA85D0B51211B6 /* PrompterView.swift */; };
+		9ADD867C893C81BCA02CBC67 /* ReadingTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D44EC08EEB1DB97FC054D /* ReadingTime.swift */; };
+		B4C77B5339FB91752C28479F /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345C978FB66A0B0BF52F5B2 /* Script.swift */; };
+		B5B0BE57CD8BB25E5811B085 /* ScriptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E692304256DB67A254301B13 /* ScriptStore.swift */; };
+		BB6A66ABC61694DB0C1A690C /* SharedTextExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B70810BAEDB56019419CED /* SharedTextExtractor.swift */; };
+		C253FBCA2E4C911D86948114 /* ScriptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E692304256DB67A254301B13 /* ScriptStore.swift */; };
+		CB14957D995F65A737AF9F9C /* AddScriptIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1846047C508FECF31970B8 /* AddScriptIntent.swift */; };
+		CBE39BCFCE59C911DA9FFCAE /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C860819AE70214139F343E82 /* LibraryView.swift */; };
+		CE84CB91D27E95BCC16C96C8 /* ReadingTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D44EC08EEB1DB97FC054D /* ReadingTime.swift */; };
+		D3130F4298CCE3BA926CB077 /* ScriptLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E016A5EE91494F5766658044 /* ScriptLibrary.swift */; };
+		D65F121BA0B294A3DAC10CDE /* ScriptImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942B7F66437861FE433FA980 /* ScriptImport.swift */; };
+		DC4DC9C5D35006B61E673806 /* scroller.icon in Resources */ = {isa = PBXBuildFile; fileRef = EFFEAC9F918B92C0F94775BF /* scroller.icon */; };
+		E29CB39467C41073222484EF /* ScrollerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAF8AFCEC46F2CEB505FB5 /* ScrollerApp.swift */; };
+		F6AFFFAEEFA02FBC3D63EE1C /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345C978FB66A0B0BF52F5B2 /* Script.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D08C0212CC25009CD3FE7B6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CEA568C231C36A4636A8885 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 233F52C2061239D69049F0EC;
+			remoteInfo = ScrollerShare;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E3BF0F212EDA58BA9DC9ACDB /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7769BDE221B3F0C96D8C7FB2 /* ScrollerShare.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0A1846047C508FECF31970B8 /* AddScriptIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScriptIntent.swift; sourceTree = "<group>"; };
+		0F584BBA84ADA6702823C5BC /* ShareRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootView.swift; sourceTree = "<group>"; };
+		11BFAE489BD4031DA9DFE1B6 /* ScrollerShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScrollerShare.entitlements; sourceTree = "<group>"; };
+		2676C82D93FA85D0B51211B6 /* PrompterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrompterView.swift; sourceTree = "<group>"; };
+		3BF98C43BC92557E0995EB4C /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		486D79C64C369ED8126A32C1 /* Scroller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Scroller.entitlements; sourceTree = "<group>"; };
+		5CE6B57BFC344AD4AD634471 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		89B70810BAEDB56019419CED /* SharedTextExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTextExtractor.swift; sourceTree = "<group>"; };
+		942B7F66437861FE433FA980 /* ScriptImport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptImport.swift; sourceTree = "<group>"; };
+		AD92CF69505AA98B519F2D31 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		AFCDB5F31748848F8E56768B /* PrompterTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrompterTextView.swift; sourceTree = "<group>"; };
+		C50D44EC08EEB1DB97FC054D /* ReadingTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingTime.swift; sourceTree = "<group>"; };
+		C860819AE70214139F343E82 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		CAB19296CC9F446DEAC24E9F /* PrompterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrompterSettings.swift; sourceTree = "<group>"; };
+		CE803B591B55BBA55D3B441B /* PrompterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrompterModel.swift; sourceTree = "<group>"; };
+		D345C978FB66A0B0BF52F5B2 /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
+		D6B58C4FA0677193C36C67E8 /* Scroller.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Scroller.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB42EE0BCEBBDB0721EE3837 /* PrompterTextProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrompterTextProxy.swift; sourceTree = "<group>"; };
+		DB45C095D270F6FC7934756C /* ScrollerShare.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ScrollerShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E016A5EE91494F5766658044 /* ScriptLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptLibrary.swift; sourceTree = "<group>"; };
+		E692304256DB67A254301B13 /* ScriptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptStore.swift; sourceTree = "<group>"; };
+		EFFEAC9F918B92C0F94775BF /* scroller.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = scroller.icon; sourceTree = "<group>"; };
+		F66A378A6865C04EB867D572 /* ScrollEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollEngine.swift; sourceTree = "<group>"; };
+		F8EAF8AFCEC46F2CEB505FB5 /* ScrollerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollerApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0FB160695F4F0F084AFB1F22 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E016A5EE91494F5766658044 /* ScriptLibrary.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		21E8671C5AD2C4684F3BD7FF /* ScrollerShare */ = {
+			isa = PBXGroup;
+			children = (
+				5CE6B57BFC344AD4AD634471 /* Info.plist */,
+				11BFAE489BD4031DA9DFE1B6 /* ScrollerShare.entitlements */,
+				89B70810BAEDB56019419CED /* SharedTextExtractor.swift */,
+				0F584BBA84ADA6702823C5BC /* ShareRootView.swift */,
+				AD92CF69505AA98B519F2D31 /* ShareViewController.swift */,
+			);
+			path = ScrollerShare;
+			sourceTree = "<group>";
+		};
+		238B62195EF7218F54D9953D /* Scroller */ = {
+			isa = PBXGroup;
+			children = (
+				D32D967517000B223F8854CE /* Intents */,
+				98260C5A5AB697C66EB6D851 /* Library */,
+				0FB160695F4F0F084AFB1F22 /* Model */,
+				8330241D96929D6AA62583DD /* Prompter */,
+				6D9455A6B14EC63D90B8C44E /* Support */,
+				486D79C64C369ED8126A32C1 /* Scroller.entitlements */,
+				EFFEAC9F918B92C0F94775BF /* scroller.icon */,
+				F8EAF8AFCEC46F2CEB505FB5 /* ScrollerApp.swift */,
+			);
+			path = Scroller;
+			sourceTree = "<group>";
+		};
+		6D9455A6B14EC63D90B8C44E /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				3BF98C43BC92557E0995EB4C /* Theme.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		8330241D96929D6AA62583DD /* Prompter */ = {
+			isa = PBXGroup;
+			children = (
+				CE803B591B55BBA55D3B441B /* PrompterModel.swift */,
+				CAB19296CC9F446DEAC24E9F /* PrompterSettings.swift */,
+				DB42EE0BCEBBDB0721EE3837 /* PrompterTextProxy.swift */,
+				AFCDB5F31748848F8E56768B /* PrompterTextView.swift */,
+				2676C82D93FA85D0B51211B6 /* PrompterView.swift */,
+				F66A378A6865C04EB867D572 /* ScrollEngine.swift */,
+			);
+			path = Prompter;
+			sourceTree = "<group>";
+		};
+		87FA75B5CF1B82C4751F0FBC /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C50D44EC08EEB1DB97FC054D /* ReadingTime.swift */,
+				D345C978FB66A0B0BF52F5B2 /* Script.swift */,
+				942B7F66437861FE433FA980 /* ScriptImport.swift */,
+				E692304256DB67A254301B13 /* ScriptStore.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		98260C5A5AB697C66EB6D851 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				C860819AE70214139F343E82 /* LibraryView.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		A33545C199BFC0862F20E21C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6B58C4FA0677193C36C67E8 /* Scroller.app */,
+				DB45C095D270F6FC7934756C /* ScrollerShare.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C52E9524D158192B4F643C7C = {
+			isa = PBXGroup;
+			children = (
+				238B62195EF7218F54D9953D /* Scroller */,
+				21E8671C5AD2C4684F3BD7FF /* ScrollerShare */,
+				87FA75B5CF1B82C4751F0FBC /* Shared */,
+				A33545C199BFC0862F20E21C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D32D967517000B223F8854CE /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				0A1846047C508FECF31970B8 /* AddScriptIntent.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		233F52C2061239D69049F0EC /* ScrollerShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4FC240267F0C4BCD3C4100C /* Build configuration list for PBXNativeTarget "ScrollerShare" */;
+			buildPhases = (
+				92B6B55731926C1157EFFDCE /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScrollerShare;
+			packageProductDependencies = (
+			);
+			productName = ScrollerShare;
+			productReference = DB45C095D270F6FC7934756C /* ScrollerShare.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		D44F0485F4EA6D032ECEED26 /* Scroller */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E373F68C44E440EFD301B7CC /* Build configuration list for PBXNativeTarget "Scroller" */;
+			buildPhases = (
+				F70E867629A1AB5D9DDEF24C /* Sources */,
+				23A1ED546B8558DE4FE43BA0 /* Resources */,
+				E3BF0F212EDA58BA9DC9ACDB /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B66DB7C77E6C863818360100 /* PBXTargetDependency */,
+			);
+			name = Scroller;
+			packageProductDependencies = (
+			);
+			productName = Scroller;
+			productReference = D6B58C4FA0677193C36C67E8 /* Scroller.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2CEA568C231C36A4636A8885 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					233F52C2061239D69049F0EC = {
+						DevelopmentTeam = 82FBZ8GVGB;
+						ProvisioningStyle = Automatic;
+					};
+					D44F0485F4EA6D032ECEED26 = {
+						DevelopmentTeam = 82FBZ8GVGB;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 7F0BCC770B6D0FBA4141B509 /* Build configuration list for PBXProject "Scroller" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = C52E9524D158192B4F643C7C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A33545C199BFC0862F20E21C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D44F0485F4EA6D032ECEED26 /* Scroller */,
+				233F52C2061239D69049F0EC /* ScrollerShare */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		23A1ED546B8558DE4FE43BA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC4DC9C5D35006B61E673806 /* scroller.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		92B6B55731926C1157EFFDCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE84CB91D27E95BCC16C96C8 /* ReadingTime.swift in Sources */,
+				F6AFFFAEEFA02FBC3D63EE1C /* Script.swift in Sources */,
+				296E1546883DC29D72A05356 /* ScriptImport.swift in Sources */,
+				C253FBCA2E4C911D86948114 /* ScriptStore.swift in Sources */,
+				5F1127BAE258944B0A6E2731 /* ShareRootView.swift in Sources */,
+				4423B2397821FE013BA762FF /* ShareViewController.swift in Sources */,
+				BB6A66ABC61694DB0C1A690C /* SharedTextExtractor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F70E867629A1AB5D9DDEF24C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB14957D995F65A737AF9F9C /* AddScriptIntent.swift in Sources */,
+				CBE39BCFCE59C911DA9FFCAE /* LibraryView.swift in Sources */,
+				4991C3B5575EA7D215131B35 /* PrompterModel.swift in Sources */,
+				30ED6068B992A578E08581D9 /* PrompterSettings.swift in Sources */,
+				1FD177855B0CBB555F99292F /* PrompterTextProxy.swift in Sources */,
+				6D39A5F57FE6CDB555461C5D /* PrompterTextView.swift in Sources */,
+				8395BC3A60CDCBD88478EB16 /* PrompterView.swift in Sources */,
+				9ADD867C893C81BCA02CBC67 /* ReadingTime.swift in Sources */,
+				B4C77B5339FB91752C28479F /* Script.swift in Sources */,
+				D65F121BA0B294A3DAC10CDE /* ScriptImport.swift in Sources */,
+				D3130F4298CCE3BA926CB077 /* ScriptLibrary.swift in Sources */,
+				B5B0BE57CD8BB25E5811B085 /* ScriptStore.swift in Sources */,
+				510A43926337A5BC6326CD72 /* ScrollEngine.swift in Sources */,
+				E29CB39467C41073222484EF /* ScrollerApp.swift in Sources */,
+				713DC70E56C4CEA3CF46AF1B /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B66DB7C77E6C863818360100 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 233F52C2061239D69049F0EC /* ScrollerShare */;
+			targetProxy = D08C0212CC25009CD3FE7B6D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2477E912494502441281E2B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 82FBZ8GVGB;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		3E67E1DDD045985CCF8A27D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = scroller;
+				CODE_SIGN_ENTITLEMENTS = Scroller/Scroller.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Scroller;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kylan.scroller;
+				PRODUCT_NAME = Scroller;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		440555116C0464C9501553F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ScrollerShare/ScrollerShare.entitlements;
+				INFOPLIST_FILE = ScrollerShare/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kylan.scroller.share;
+				PRODUCT_NAME = ScrollerShare;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		829CB07DAF1BC3F904733208 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 82FBZ8GVGB;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		A2EDE219CD02F81649607438 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ScrollerShare/ScrollerShare.entitlements;
+				INFOPLIST_FILE = ScrollerShare/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kylan.scroller.share;
+				PRODUCT_NAME = ScrollerShare;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DDF8EA970789203183415A63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = scroller;
+				CODE_SIGN_ENTITLEMENTS = Scroller/Scroller.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Scroller;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kylan.scroller;
+				PRODUCT_NAME = Scroller;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7F0BCC770B6D0FBA4141B509 /* Build configuration list for PBXProject "Scroller" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2477E912494502441281E2B8 /* Debug */,
+				829CB07DAF1BC3F904733208 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E373F68C44E440EFD301B7CC /* Build configuration list for PBXNativeTarget "Scroller" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDF8EA970789203183415A63 /* Debug */,
+				3E67E1DDD045985CCF8A27D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F4FC240267F0C4BCD3C4100C /* Build configuration list for PBXNativeTarget "ScrollerShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2EDE219CD02F81649607438 /* Debug */,
+				440555116C0464C9501553F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2CEA568C231C36A4636A8885 /* Project object */;
+}
