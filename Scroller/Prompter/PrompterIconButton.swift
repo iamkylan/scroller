@@ -10,11 +10,12 @@ struct PrompterIconButton: View {
             Image(systemName: symbol)
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundStyle(isOn ? .black : .white)
-                .frame(width: 40, height: 40)
-                .background(
-                    isOn ? AnyShapeStyle(Color.scrollerAccent) : AnyShapeStyle(.ultraThinMaterial),
-                    in: .circle
-                )
+                .frame(width: 44, height: 44)
         }
+        .buttonStyle(.plain)
+        .glassEffect(
+            isOn ? .regular.tint(.scrollerAccent).interactive() : .regular.interactive(),
+            in: .circle
+        )
     }
 }

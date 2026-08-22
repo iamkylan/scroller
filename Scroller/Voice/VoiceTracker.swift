@@ -18,6 +18,7 @@ final class VoiceTracker {
     private let transcription = SpeechTranscription()
     private var engine = AlignmentEngine()
     private var tokens: [ScriptToken] = []
+    private var lockTimeout: Task<Void, Never>?
     private var tokenTexts: [String] = []
     private var cursor = 0
 
@@ -32,10 +33,9 @@ final class VoiceTracker {
     private let longJumpTokens = 30
     private let longJumpThreshold = 0.65
 
-    var isLocked: Bool {
-        guard let lastMatchAt else { return false }
-        return Date.now.timeIntervalSince(lastMatchAt) < 2.5
-    }
+    /// Held as state rather than derived from a timestamp: a computed
+    /// "did I match recently" never tells SwiftUI when it stops being true.
+    private(set) var isLocked = false
 
     /// True when speech is being heard but none of it matches the script —
     /// you're ad-libbing, and the text should keep drifting rather than freeze.
@@ -66,6 +66,9 @@ final class VoiceTracker {
     }
 
     func stop() async {
+        lockTimeout?.cancel()
+        lockTimeout = nil
+        isLocked = false
         await transcription.stop()
         status = transcription.status
     }
@@ -98,6 +101,13 @@ final class VoiceTracker {
         cursor = match.tokenIndex
         confidence = match.confidence
         lastMatchAt = .now
+        isLocked = true
+        lockTimeout?.cancel()
+        lockTimeout = Task { [weak self] in
+            try? await Task.sleep(for: .milliseconds(2500))
+            guard !Task.isCancelled else { return }
+            self?.isLocked = false
+        }
 
         // The cursor is the next unspoken token; scrolling it to the reading
         // line puts the words you are about to say under the marker.

@@ -59,34 +59,37 @@ struct LibraryView: View {
     /// How you're shooting is a session-level choice, so it sits apart from
     /// the list rather than competing with it for the top of the screen.
     private func modeBar(selection: Binding<PrompterMode>) -> some View {
-        HStack(spacing: 4) {
-            ForEach(PrompterMode.allCases) { mode in
-                Button {
-                    selection.wrappedValue = mode
-                } label: {
-                    Text(mode.title)
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(selection.wrappedValue == mode ? .black : .primary)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 11)
-                        .background {
-                            if selection.wrappedValue == mode {
-                                Capsule()
-                                    .fill(Color.scrollerAccent)
-                                    .matchedGeometryEffect(id: "mode", in: modeSelection)
-                            }
-                        }
-                        .contentShape(Capsule())
+        GlassEffectContainer(spacing: 0) {
+            HStack(spacing: 4) {
+                ForEach(PrompterMode.allCases) { mode in
+                    let isSelected = selection.wrappedValue == mode
+                    Button {
+                        selection.wrappedValue = mode
+                    } label: {
+                        Text(mode.title)
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(isSelected ? .black : .white)
+                            .frame(width: 104)
+                            .padding(.vertical, 11)
+                            .contentShape(Capsule())
+                    }
+                    .buttonStyle(.plain)
+                    // The selection is a single piece of glass that travels
+                    // between the modes, rather than one fading out as another
+                    // fades in. Sharing one id across modes is what lets it
+                    // morph across the gap.
+                    .glassEffect(
+                        isSelected ? .regular.tint(.scrollerAccent).interactive() : .identity,
+                        in: .capsule
+                    )
+                    .glassEffectID(isSelected ? Optional("selection") : nil, in: modeSelection)
                 }
-                .buttonStyle(.plain)
             }
+            .padding(5)
         }
-        .padding(4)
-        .frame(width: 236)
-        .background(.regularMaterial, in: .capsule)
-        .shadow(color: .black.opacity(0.35), radius: 18, y: 6)
+        .glassEffect(.regular, in: .capsule)
         .padding(.bottom, 6)
-        .animation(.snappy(duration: 0.28), value: selection.wrappedValue)
+        .animation(.snappy(duration: 0.34), value: selection.wrappedValue)
     }
 
     private func row(_ script: Script) -> some View {

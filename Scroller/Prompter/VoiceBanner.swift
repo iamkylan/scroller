@@ -39,7 +39,7 @@ struct VoiceBanner: View {
             .padding(.horizontal, 22)
             .padding(.vertical, 18)
             .frame(maxWidth: 320)
-                .background(.ultraThinMaterial, in: .rect(cornerRadius: 20))
+                .glassEffect(.regular, in: .rect(cornerRadius: 22))
                 .transition(.opacity)
             }
         }

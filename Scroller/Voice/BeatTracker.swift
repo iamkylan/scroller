@@ -7,8 +7,12 @@ final class BeatTracker {
     private(set) var status: SpeechTranscription.Status = .idle
     private(set) var progress = BeatProgress(script: .empty)
     private(set) var lastMatchAt: Date?
+    /// Held as state rather than derived from a timestamp: a computed
+    /// "was I speaking recently" never tells SwiftUI when it stops being true.
+    private(set) var isSpeaking = false
 
     private let transcription = SpeechTranscription()
+    private var speechTimeout: Task<Void, Never>?
 
     var currentBeat: Beat? { progress.currentBeat }
     var previousBeat: Beat? { progress.previousBeat }
@@ -16,11 +20,6 @@ final class BeatTracker {
     var takeCount: Int { progress.takeCount }
     var beatCount: Int { progress.script.beats.count }
     var index: Int { progress.index }
-
-    var isDelivering: Bool {
-        guard let lastMatchAt else { return false }
-        return Date.now.timeIntervalSince(lastMatchAt) < 1.5
-    }
 
     var isUsingFallback: Bool {
         guard case .failed(let failure) = status else { return false }
@@ -37,6 +36,7 @@ final class BeatTracker {
             guard let self else { return }
             if self.progress.ingest(words) { self.lastMatchAt = .now }
             self.status = self.transcription.status
+            self.noteSpeech()
         }
         await transcription.start(
             scriptBody: script.body,
@@ -48,8 +48,23 @@ final class BeatTracker {
     }
 
     func stopListening() async {
+        speechTimeout?.cancel()
+        speechTimeout = nil
+        isSpeaking = false
         await transcription.stop()
         status = transcription.status
+    }
+
+    /// Marks speech as live and schedules it to lapse, so the interface can get
+    /// out of the way mid-take and come back once you've stopped.
+    private func noteSpeech() {
+        isSpeaking = true
+        speechTimeout?.cancel()
+        speechTimeout = Task { [weak self] in
+            try? await Task.sleep(for: .milliseconds(2200))
+            guard !Task.isCancelled else { return }
+            self?.isSpeaking = false
+        }
     }
 
     func advance() { progress.advance() }

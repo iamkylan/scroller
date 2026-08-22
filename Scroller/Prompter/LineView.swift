@@ -15,16 +15,23 @@ struct LineView: View {
         @Bindable var settings = settings
 
         ZStack {
-            Color.black
+            Color.black.ignoresSafeArea()
 
-            tapZones
-            beats
-            chrome
+            // The content deliberately stays inside the safe area: in landscape
+            // the sensor housing would otherwise clip the start of every line.
+            GeometryReader { geometry in
+                let isShort = geometry.size.height < 500
 
-            VoiceBanner(status: tracker.status)
-                .animation(.easeOut(duration: 0.2), value: tracker.status)
+                ZStack {
+                    tapZones
+                    beats(isShort: isShort)
+                    chrome(isShort: isShort)
+
+                    VoiceBanner(status: tracker.status)
+                        .animation(.easeOut(duration: 0.2), value: tracker.status)
+                }
+            }
         }
-        .ignoresSafeArea()
         .statusBarHidden()
         .persistentSystemOverlays(.hidden)
         .gesture(pinch)
@@ -52,11 +59,13 @@ struct LineView: View {
 
     // MARK: - Beats
 
-    private var beats: some View {
+    private func beats(isShort: Bool) -> some View {
         VStack(spacing: 0) {
             Spacer(minLength: 0)
 
-            if let previous = tracker.previousBeat {
+            // In landscape the line you're about to say is worth more than the
+            // one you've already delivered.
+            if let previous = tracker.previousBeat, !isShort {
                 Text(previous.text)
                     .font(.system(size: settings.lineFontSize * 0.3, weight: .medium))
                     .foregroundStyle(.white.opacity(0.2))
@@ -75,10 +84,10 @@ struct LineView: View {
             Text(tracker.currentBeat?.text ?? script.body)
                 .font(.system(size: settings.lineFontSize, weight: .semibold))
                 .foregroundStyle(.white)
-                .minimumScaleFactor(0.55)
+                .minimumScaleFactor(isShort ? 0.32 : 0.5)
 
             takeBadge
-                .padding(.top, 18)
+                .padding(.top, isShort ? 10 : 18)
 
             Spacer(minLength: 0)
 
@@ -86,18 +95,19 @@ struct LineView: View {
                 // Deliberately readable, not a hint: saying its first couple of
                 // words is what advances the prompter.
                 Text(next.text)
-                    .font(.system(size: settings.lineFontSize * 0.55, weight: .medium))
+                    .font(.system(size: settings.lineFontSize * (isShort ? 0.42 : 0.55), weight: .medium))
                     .foregroundStyle(.white.opacity(0.42))
-                    .lineLimit(4)
-                    .padding(.bottom, 16)
+                    .lineLimit(isShort ? 2 : 4)
+                    .minimumScaleFactor(0.6)
+                    .padding(.bottom, isShort ? 4 : 16)
             }
         }
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, 28)
+        .padding(.horizontal, isShort ? 20 : 24)
         // Clears the chrome and the beat progress bar above it.
-        .padding(.top, 150)
-        .padding(.bottom, 52)
+        .padding(.top, isShort ? 74 : 132)
+        .padding(.bottom, isShort ? 14 : 40)
         .scaleEffect(x: settings.isMirrored ? -1 : 1, y: 1)
         .allowsHitTesting(false)
     }
@@ -107,13 +117,13 @@ struct LineView: View {
         if tracker.takeCount > 0 {
             HStack(spacing: 7) {
                 Circle()
-                    .fill(tracker.isDelivering ? Color.scrollerAccent : .white.opacity(0.25))
+                    .fill(tracker.isSpeaking ? Color.scrollerAccent : .white.opacity(0.25))
                     .frame(width: 6, height: 6)
                 Text("Take \(tracker.takeCount)")
             }
             .font(.caption.weight(.semibold))
             .foregroundStyle(.white.opacity(0.5))
-            .animation(.easeOut(duration: 0.25), value: tracker.isDelivering)
+            .animation(.easeOut(duration: 0.25), value: tracker.isSpeaking)
         }
     }
 
@@ -151,7 +161,7 @@ struct LineView: View {
         else { .white.opacity(0.1) }
     }
 
-    private var chrome: some View {
+    private func chrome(isShort: Bool) -> some View {
         VStack {
             HStack(spacing: 10) {
                 PrompterIconButton(symbol: "xmark") { dismiss() }
@@ -163,12 +173,17 @@ struct LineView: View {
                     settings.isMirrored.toggle()
                 }
             }
-            .padding(.horizontal, 18)
-            .padding(.top, 60)
+            .padding(.horizontal, isShort ? 6 : 14)
+            .padding(.top, isShort ? 8 : 46)
+            // The moment you start delivering, the controls get out of the way.
+            // The progress bar stays: it's information, not a control.
+            .opacity(tracker.isSpeaking ? 0 : 1)
+            .allowsHitTesting(!tracker.isSpeaking)
+            .animation(.easeOut(duration: 0.4), value: tracker.isSpeaking)
 
             beatProgress
-                .padding(.horizontal, 20)
-                .padding(.top, 18)
+                .padding(.horizontal, isShort ? 8 : 16)
+                .padding(.top, isShort ? 10 : 18)
 
             Spacer()
         }

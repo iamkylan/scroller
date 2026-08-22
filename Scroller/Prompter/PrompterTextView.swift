@@ -10,6 +10,11 @@ struct PrompterTextView: UIViewRepresentable {
     let isMirrored: Bool
     let topInset: Double
     let bottomInset: Double
+    /// Passed in rather than read from the view: the text view ignores the safe
+    /// area so it can run full-bleed, which means UIKit reports no insets for
+    /// it, and in landscape the sensor housing would clip the first character
+    /// of every line.
+    let horizontalInset: Double
     let readingLineY: Double
     let proxy: PrompterTextProxy
 
@@ -58,7 +63,12 @@ struct PrompterTextView: UIViewRepresentable {
             needsRelayout = true
         }
 
-        let insets = UIEdgeInsets(top: topInset, left: 26, bottom: bottomInset, right: 26)
+        let insets = UIEdgeInsets(
+            top: topInset,
+            left: horizontalInset,
+            bottom: bottomInset,
+            right: horizontalInset
+        )
         if textView.textContainerInset != insets {
             textView.textContainerInset = insets
             needsRelayout = true

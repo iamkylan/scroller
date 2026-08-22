@@ -18,18 +18,25 @@ struct PrompterView: View {
     var body: some View {
         @Bindable var settings = settings
 
+        // The reader sits inside the safe area so it can report the insets;
+        // only the text itself runs full-bleed, and it insets its own text
+        // container past the sensor housing.
         GeometryReader { geometry in
-            let readingLineY = geometry.size.height * settings.eyeLineFraction
+            let insets = geometry.safeAreaInsets
+            let fullHeight = geometry.size.height + insets.top + insets.bottom
+            let readingLineY = fullHeight * settings.eyeLineFraction
+            let isShort = fullHeight < 500
 
             ZStack {
-                Color.black
+                Color.black.ignoresSafeArea()
 
                 PrompterTextView(
                     text: script.body,
                     fontSize: settings.fontSize,
                     isMirrored: settings.isMirrored,
                     topInset: readingLineY,
-                    bottomInset: max(0, geometry.size.height - readingLineY),
+                    bottomInset: max(0, fullHeight - readingLineY),
+                    horizontalInset: max(26, max(insets.leading, insets.trailing) + 10),
                     readingLineY: readingLineY,
                     proxy: model.proxy,
                     onFontSizeChange: { newSize in
@@ -41,13 +48,18 @@ struct PrompterView: View {
                     onTap: { model.toggle() },
                     onManualScroll: { model.stop() }
                 )
+                .ignoresSafeArea()
 
-                readingLine(width: geometry.size.width, height: geometry.size.height)
+                readingLine(
+                    width: geometry.size.width,
+                    fullHeight: fullHeight,
+                    topInset: insets.top
+                )
 
                 if model.isActive {
                     runningHint
                 } else {
-                    controls(wordsPerMinute: $settings.wordsPerMinute)
+                    controls(wordsPerMinute: $settings.wordsPerMinute, isShort: isShort)
                 }
 
                 voiceBanner
@@ -65,7 +77,6 @@ struct PrompterView: View {
             .onAppear { model.readingLineY = readingLineY }
             .onChange(of: readingLineY) { _, newValue in model.readingLineY = newValue }
         }
-        .ignoresSafeArea()
         .statusBarHidden()
         .persistentSystemOverlays(.hidden)
         .onAppear {
@@ -88,7 +99,7 @@ struct PrompterView: View {
 
     // MARK: - Reading line
 
-    private func readingLine(width: CGFloat, height: CGFloat) -> some View {
+    private func readingLine(width: CGFloat, fullHeight: CGFloat, topInset: CGFloat) -> some View {
         HStack(spacing: 10) {
             Image(systemName: "arrowtriangle.right.fill")
             Rectangle()
@@ -101,11 +112,12 @@ struct PrompterView: View {
         .padding(.horizontal, 10)
         .frame(width: width, height: 44)
         .contentShape(Rectangle())
-        .position(x: width / 2, y: height * settings.eyeLineFraction)
+        .position(x: width / 2, y: fullHeight * settings.eyeLineFraction - topInset)
         .gesture(
             DragGesture()
                 .onChanged { value in
-                    settings.eyeLineFraction = min(max(value.location.y / height, 0.12), 0.78)
+                    let fraction = (value.location.y + topInset) / fullHeight
+                    settings.eyeLineFraction = min(max(fraction, 0.12), 0.78)
                 }
         )
         .allowsHitTesting(!model.isActive)
@@ -133,7 +145,7 @@ struct PrompterView: View {
         .allowsHitTesting(false)
     }
 
-    private func controls(wordsPerMinute: Binding<Double>) -> some View {
+    private func controls(wordsPerMinute: Binding<Double>, isShort: Bool) -> some View {
         VStack(spacing: 0) {
             HStack(spacing: 10) {
                 PrompterIconButton(symbol: "xmark") { dismiss() }
@@ -146,19 +158,20 @@ struct PrompterView: View {
                     settings.isMirrored.toggle()
                 }
             }
-            .padding(.horizontal, 18)
-            .padding(.top, 60)
+            .padding(.horizontal, isShort ? 6 : 14)
+            .padding(.top, isShort ? 8 : 46)
 
             Spacer()
 
-            VStack(spacing: 20) {
+            VStack(spacing: isShort ? 12 : 20) {
                 Button { model.start() } label: {
                     Image(systemName: "play.fill")
-                        .font(.system(size: 30))
+                        .font(.system(size: isShort ? 24 : 30))
                         .foregroundStyle(.black)
-                        .frame(width: 74, height: 74)
-                        .background(Color.scrollerAccent, in: .circle)
+                        .frame(width: isShort ? 60 : 78, height: isShort ? 60 : 78)
                 }
+                .buttonStyle(.plain)
+                .glassEffect(.regular.tint(.scrollerAccent).interactive(), in: .circle)
 
                 HStack(spacing: 14) {
                     Image(systemName: "tortoise.fill")
@@ -174,8 +187,8 @@ struct PrompterView: View {
                     .font(.caption.weight(.medium).monospacedDigit())
                     .foregroundStyle(.white.opacity(0.45))
             }
-            .padding(.horizontal, 34)
-            .padding(.bottom, 44)
+            .padding(.horizontal, isShort ? 40 : 30)
+            .padding(.bottom, isShort ? 10 : 30)
         }
         .background {
             // The text scrolls underneath the controls, so the scrim has to be
@@ -186,7 +199,7 @@ struct PrompterView: View {
                     startPoint: .top,
                     endPoint: .bottom
                 )
-                .frame(height: 150)
+                .frame(height: isShort ? 96 : 150)
 
                 Spacer(minLength: 0)
 
@@ -195,7 +208,7 @@ struct PrompterView: View {
                     startPoint: .top,
                     endPoint: .bottom
                 )
-                .frame(height: 290)
+                .frame(height: isShort ? 190 : 290)
             }
             .allowsHitTesting(false)
         }
@@ -212,7 +225,7 @@ struct PrompterView: View {
             .foregroundStyle(.white.opacity(0.85))
             .padding(.horizontal, 12)
             .padding(.vertical, 7)
-            .background(.ultraThinMaterial, in: .capsule)
+            .glassEffect(.regular, in: .capsule)
             .opacity(showSizeHUD ? 1 : 0)
             .animation(.easeOut(duration: 0.18), value: showSizeHUD)
             .padding(.top, 62)
