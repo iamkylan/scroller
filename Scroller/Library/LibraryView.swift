@@ -1,29 +1,56 @@
 import SwiftUI
 
-/// Flow and Line are real tabs rather than a hand-rolled selector, so the
-/// selection behaviour, the glass, and the animation are the system's own.
 struct LibraryView: View {
     @Environment(PrompterSettings.self) private var settings
+    @Namespace private var selectionGlass
 
     var body: some View {
         @Bindable var settings = settings
 
-        TabView(selection: $settings.mode) {
-            // Text-only labels: this is an internal tool for people who know
-            // the difference, and an icon for "Flow" would be a guess.
-            Tab(value: PrompterMode.flow) {
-                ScriptListView(mode: .flow)
-            } label: {
-                Text(PrompterMode.flow.title)
+        ScriptListView(mode: settings.mode)
+            .safeAreaInset(edge: .bottom) {
+                ModeSwitch(selection: $settings.mode, namespace: selectionGlass)
             }
+    }
+}
 
-            Tab(value: PrompterMode.line) {
-                ScriptListView(mode: .line)
-            } label: {
-                Text(PrompterMode.line.title)
+/// Flow and Line are two modes of one screen, not two sections of an app, so
+/// this is a mode switch rather than a tab bar. It borrows the tab bar's
+/// mechanic — a glass container with a tinted glass selection that travels
+/// between options — at a size you can read at arm's length on set.
+private struct ModeSwitch: View {
+    @Binding var selection: PrompterMode
+    let namespace: Namespace.ID
+
+    var body: some View {
+        GlassEffectContainer(spacing: 0) {
+            HStack(spacing: 6) {
+                ForEach(PrompterMode.allCases) { mode in
+                    let isSelected = selection == mode
+                    Button {
+                        selection = mode
+                    } label: {
+                        Text(mode.title)
+                            .font(.system(size: 19, weight: .semibold))
+                            .foregroundStyle(isSelected ? .black : .white.opacity(0.7))
+                            .frame(width: 112, height: 46)
+                            .contentShape(Capsule())
+                    }
+                    .buttonStyle(.plain)
+                    // One piece of glass with one id, so it travels between the
+                    // modes instead of one fading out as the other fades in.
+                    .glassEffect(
+                        isSelected ? .regular.tint(.scrollerAccent).interactive() : .identity,
+                        in: .capsule
+                    )
+                    .glassEffectID(isSelected ? Optional("selection") : nil, in: namespace)
+                }
             }
+            .padding(5)
         }
-        .tint(.scrollerAccent)
+        .glassEffect(.regular, in: .capsule)
+        .padding(.bottom, 8)
+        .animation(.snappy(duration: 0.32), value: selection)
     }
 }
 
