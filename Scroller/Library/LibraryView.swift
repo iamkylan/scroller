@@ -31,6 +31,19 @@ private struct ScriptListView: View {
     var body: some View {
         NavigationStack {
             List {
+                // Temporary while we chase the device crash: if the last voice
+                // startup never finished, this says which stage it died in.
+                if let step = VoiceDiagnostics.unfinishedStepAtLaunch {
+                    Section {
+                        Label(
+                            "Voice tracking stopped while \(step)",
+                            systemImage: "exclamationmark.triangle.fill"
+                        )
+                        .font(.caption)
+                        .foregroundStyle(.orange)
+                    }
+                }
+
                 Section {
                     PasteButton(payloadType: String.self) { strings in
                         guard let text = strings.first,

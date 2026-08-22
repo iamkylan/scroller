@@ -43,6 +43,7 @@
 		DC4DC9C5D35006B61E673806 /* scroller.icon in Resources */ = {isa = PBXBuildFile; fileRef = EFFEAC9F918B92C0F94775BF /* scroller.icon */; };
 		E18D6DAD8A9C0EBB32E60590 /* BeatSegmenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BE057344677F62513341C /* BeatSegmenter.swift */; };
 		E29CB39467C41073222484EF /* ScrollerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAF8AFCEC46F2CEB505FB5 /* ScrollerApp.swift */; };
+		E8A4B9DC3DCF26948BD58FE6 /* VoiceDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E054F81876DA74D84F1C9FF /* VoiceDiagnostics.swift */; };
 		E97B9B7A792C8C9D910B482F /* VoiceTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62854647E80866D5603DD0D /* VoiceTracker.swift */; };
 		F6AFFFAEEFA02FBC3D63EE1C /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345C978FB66A0B0BF52F5B2 /* Script.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +75,7 @@
 /* Begin PBXFileReference section */
 		04DF2147F28601992D8C1526 /* Beat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beat.swift; sourceTree = "<group>"; };
 		0A1846047C508FECF31970B8 /* AddScriptIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScriptIntent.swift; sourceTree = "<group>"; };
+		0E054F81876DA74D84F1C9FF /* VoiceDiagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDiagnostics.swift; sourceTree = "<group>"; };
 		0F584BBA84ADA6702823C5BC /* ShareRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootView.swift; sourceTree = "<group>"; };
 		11BFAE489BD4031DA9DFE1B6 /* ScrollerShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScrollerShare.entitlements; sourceTree = "<group>"; };
 		2676C82D93FA85D0B51211B6 /* PrompterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrompterView.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				61C906E279EE482FAAD8E582 /* BeatProgress.swift */,
 				2FD9F41A0DE1BE03D2A54D17 /* BeatTracker.swift */,
 				B48D3A50D0AEFBD4E8784344 /* SpeechTranscription.swift */,
+				0E054F81876DA74D84F1C9FF /* VoiceDiagnostics.swift */,
 				A62854647E80866D5603DD0D /* VoiceTracker.swift */,
 			);
 			path = Voice;
@@ -370,6 +373,7 @@
 				7F50E176EEEB46BCA66DACAD /* SpeechTranscription.swift in Sources */,
 				713DC70E56C4CEA3CF46AF1B /* Theme.swift in Sources */,
 				35EE4F7879960B1C261BBEB0 /* VoiceBanner.swift in Sources */,
+				E8A4B9DC3DCF26948BD58FE6 /* VoiceDiagnostics.swift in Sources */,
 				E97B9B7A792C8C9D910B482F /* VoiceTracker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,7 +425,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 82FBZ8GVGB;
@@ -527,7 +531,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 82FBZ8GVGB;

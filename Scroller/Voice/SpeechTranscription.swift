@@ -71,18 +71,25 @@ final class SpeechTranscription {
     // MARK: - Lifecycle
 
     func start(scriptBody: String, vocabulary: [String]) async {
+        // A previous failure must not wedge this shut: toggling voice off and
+        // on again is the obvious way to retry.
+        if case .failed = status { status = .idle }
         guard case .idle = status else { return }
         status = .preparing
         finalizedWords = []
         volatileWords = []
 
+        VoiceDiagnostics.begin(.permissions)
         if let failure = await requestPermissions() {
             status = .failed(failure)
+            VoiceDiagnostics.finish()
             return
         }
 
+        VoiceDiagnostics.begin(.locale)
         guard let locale = await Self.resolveLocale(for: scriptBody) else {
             status = .failed(.noSupportedLocale)
+            VoiceDiagnostics.finish()
             return
         }
         self.locale = locale
@@ -98,13 +105,16 @@ final class SpeechTranscription {
         self.transcriber = transcriber
 
         do {
+            VoiceDiagnostics.begin(.model)
             try await prepareModel(for: transcriber, locale: locale)
         } catch {
             status = .failed(.modelUnavailable(error.localizedDescription))
+            VoiceDiagnostics.finish()
             return
         }
 
         do {
+            VoiceDiagnostics.begin(.analyzer)
             let context = AnalysisContext()
             // Telling the recognizer what is about to be said is a large
             // accuracy win when the words are known in advance.
@@ -123,8 +133,10 @@ final class SpeechTranscription {
 
             observeResults(from: transcriber)
             status = .listening
+            VoiceDiagnostics.finish()
         } catch {
             status = .failed(.other(error.localizedDescription))
+            VoiceDiagnostics.finish()
             await stop()
         }
     }
@@ -160,6 +172,7 @@ final class SpeechTranscription {
         convertingTo analyzerFormat: AVAudioFormat?,
         into continuation: AsyncStream<AnalyzerInput>.Continuation
     ) throws {
+        VoiceDiagnostics.begin(.audioSession)
         let session = AVAudioSession.sharedInstance()
         // No options: duckOthers is rejected outright by .record, and Bluetooth
         // input cannot be enabled for it either. Passing either one makes
@@ -167,6 +180,10 @@ final class SpeechTranscription {
         try session.setCategory(.record, mode: .measurement)
         try session.setActive(true, options: .notifyOthersOnDeactivation)
 
+        // Reading inputNode with no input route raises rather than throwing.
+        guard session.isInputAvailable else { throw AudioSetupError.inputUnavailable }
+
+        VoiceDiagnostics.begin(.audioEngine)
         let engine = AVAudioEngine()
         let inputNode = engine.inputNode
         let inputFormat = inputNode.outputFormat(forBus: 0)
@@ -192,6 +209,7 @@ final class SpeechTranscription {
         }
         let resolvedConverter = converter
 
+        VoiceDiagnostics.begin(.tap)
         inputNode.installTap(onBus: 0, bufferSize: 4096, format: inputFormat) { buffer, _ in
             guard let resolvedConverter, let targetFormat else {
                 continuation.yield(AnalyzerInput(buffer: buffer))
@@ -201,6 +219,7 @@ final class SpeechTranscription {
             continuation.yield(AnalyzerInput(buffer: converted))
         }
 
+        VoiceDiagnostics.begin(.engineStart)
         engine.prepare()
         try engine.start()
         audioEngine = engine
