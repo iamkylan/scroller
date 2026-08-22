@@ -470,7 +470,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kylan.scroller;
 				PRODUCT_NAME = Scroller;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -487,7 +487,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kylan.scroller.share;
 				PRODUCT_NAME = ScrollerShare;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -568,7 +568,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kylan.scroller.share;
 				PRODUCT_NAME = ScrollerShare;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -586,7 +586,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kylan.scroller;
 				PRODUCT_NAME = Scroller;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};

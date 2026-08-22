@@ -60,7 +60,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.kylan.scroller
         PRODUCT_NAME: Scroller
         ASSETCATALOG_COMPILER_APPICON_NAME: scroller
-        TARGETED_DEVICE_FAMILY: "1,2"
+        TARGETED_DEVICE_FAMILY: "1"
 
   ScrollerShare:
     type: app-extension
@@ -92,4 +92,4 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.kylan.scroller.share
         PRODUCT_NAME: ScrollerShare
 
-        TARGETED_DEVICE_FAMILY: "1,2"
+        TARGETED_DEVICE_FAMILY: "1"
